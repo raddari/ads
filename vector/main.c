@@ -25,6 +25,9 @@ int main(void) {
   vector_prepend(vector, (Item) -1);
   assert((Item) -1 == vector_at(vector, 0));
 
+  vector_remove(vector, 0);
+  assert((Item) 3 == vector_at(vector, 0));
+
   vector_destroy(&vector);
   assert(NULL == vector);
   return 0;

@@ -54,6 +54,17 @@ void vector_insert(Vector* vector, Item item, int index) {
   vector->items[index] = item;
 }
 
+void vector_remove(Vector* vector, int index) {
+  if (out_of_range(vector, index)) {
+    return;
+  }
+  if (index < vector->size) {
+    memmove(vector->items[index + 1], vector->items[index],
+            vector->size - index - 1);
+  }
+  vector->size--;
+}
+
 static bool out_of_range(Vector* vector, int index) {
   return index < 0 || index >= vector->size;
 }
