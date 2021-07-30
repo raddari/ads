@@ -1,0 +1,8 @@
+{
+    "editor.tabSize": 2,
+    "files.associations": {
+        ".clang-format": "yaml",
+        "Makefile-extras": "makefile",
+        "*.h": "c",
+    },
+}
