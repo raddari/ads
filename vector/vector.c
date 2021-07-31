@@ -85,6 +85,10 @@ int vector_find(Vector* vector, Item item, Comparator comparator) {
   return -1;
 }
 
-int vector_size(Vector* vector) { return vector->size; }
+int vector_size(Vector* vector) {
+  return vector->size;
+}
 
-bool vector_is_empty(Vector* vector) { return vector->size == 0; }
+bool vector_is_empty(Vector* vector) {
+  return vector->size == 0;
+}
