@@ -36,7 +36,7 @@ void vector_append(Vector* vector, Item item) {
 
 void vector_prepend(Vector* vector, Item item) {
   ensure_capacity(vector);
-  memmove(vector->items[1], vector->items[0], vector->size++);
+  memmove(&vector->items[1], &vector->items[0], vector->size++);
   vector->items[0] = item;
 }
 
@@ -59,7 +59,7 @@ void vector_remove(Vector* vector, int index) {
     return;
   }
   if (index < vector->size) {
-    memmove(vector->items[index + 1], vector->items[index],
+    memmove(&vector->items[index + 1], &vector->items[index],
             vector->size - index - 1);
   }
   vector->size--;
