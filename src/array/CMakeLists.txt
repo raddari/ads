@@ -1,3 +1,1 @@
-project(array)
-
 add_executable(array Main.c)
