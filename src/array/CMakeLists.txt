@@ -1,1 +1,1 @@
-target_sources(array PRIVATE Array.c Array.h)
+target_sources(array PRIVATE Array.c)
