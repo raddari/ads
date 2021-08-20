@@ -3,4 +3,4 @@ project(ads)
 
 set(CMAKE_C_STANDARD 11)
 
-add_subdirectory(vector)
+add_subdirectory(src)
