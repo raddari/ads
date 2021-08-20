@@ -1,1 +1,1 @@
-add_executable(array Main.c)
+target_sources(array PRIVATE Array.c Array.h)

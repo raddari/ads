@@ -3,4 +3,5 @@ project(ads)
 
 set(CMAKE_C_STANDARD 11)
 
+add_library(array SHARED)
 add_subdirectory(src/array)
