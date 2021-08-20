@@ -1,12 +1,11 @@
 ﻿---
-BasedOnStyle: Google
-AllowShortBlocksOnASingleLine: 'false'
-AllowShortCaseLabelsOnASingleLine: 'false'
-AllowShortFunctionsOnASingleLine: 'false'
-AllowShortIfStatementsOnASingleLine: 'false'
-AllowShortLoopsOnASingleLine: 'false'
+BasedOnStyle: Chromium
+AllowShortBlocksOnASingleLine: "false"
+AllowShortCaseLabelsOnASingleLine: "false"
+AllowShortFunctionsOnASingleLine: "false"
+AllowShortIfStatementsOnASingleLine: "false"
+AllowShortLoopsOnASingleLine: "false"
 ColumnLimit: 80
-SortIncludes: 'false'
-SpaceAfterCStyleCast: 'true'
-
-...
+MaxEmptyLinesToKeep: 2
+SortIncludes: "false"
+SpaceAfterCStyleCast: "true"
