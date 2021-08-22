@@ -2,20 +2,18 @@
 
 #include "unity.h"
 
-void setUp() {
 
-}
-
-void tearDown() {
-
-}
-
-void test_should_pass() {
-  TEST_ASSERT_EQUAL(0, 0);
+void test_empty_array_has_0_size() {
 }
 
 int main(void) {
   UNITY_BEGIN();
-  RUN_TEST(test_should_pass);
+  RUN_TEST(test_empty_array_has_0_size);
   return UNITY_END();
+}
+
+void setUp() {
+}
+
+void tearDown() {
 }
