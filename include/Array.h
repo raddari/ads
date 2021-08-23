@@ -1,4 +1,4 @@
-/// Dynamic array with type safety.
+/// Dynamic array with type and memory safety.
 /// Heavily inspired by https://github.com/travisvroman/kohi
 #pragma once
 
