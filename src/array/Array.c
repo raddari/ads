@@ -45,3 +45,18 @@ void _array_set_field(Array array, ArrayField field, u64 value) {
   u64* header = array_header(array);
   header[field] = value;
 }
+
+Array _array_push(Array array, const void* value) {
+  u64 stride = array_stride(array);
+  u64 capacity = array_capacity(array);
+  u64 length = array_length(array);
+
+  if (length >= capacity) {
+    array = _array_resize(array);
+  }
+
+  u64 offset = length * stride;
+  memcpy(array + offset, value, stride);
+  _array_set_field(array, ARRAY_LENGTH, length + 1);
+  return array;
+}
