@@ -5,6 +5,9 @@
 #define array_header(array) \
     (u64*) array - ARRAY_FIELD_SIZE
 
+#define array_capacity(array) \
+    _array_get_field(array, ARRAY_CAPACITY)
+
 
 Array _array_create(u64 capacity, u64 stride) {
   u64 header_size = 3 * ARRAY_FIELD_SIZE * sizeof (u64);

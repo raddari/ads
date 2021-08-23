@@ -61,8 +61,5 @@ Array _array_pop_at(Array array, u64 index, void* dest);
 #define array_clear(array) \
     _array_set_field(array, ARRAY_LENGTH, 0)
 
-#define array_capacity(array) \
-    _array_get_field(array, ARRAY_CAPACITY)
-
 #define array_length(array) \
     _array_get_field(array, ARRAY_LENGTH)
