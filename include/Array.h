@@ -43,7 +43,7 @@ Array _array_pop_at(Array array, u64 index, void* dest);
 #define array_push(array, value)                 \
     {                                            \
       typeof(value) temp = value;                \
-      array = _array_insert(array, index, &temp) \
+      array = _array_push(array, &temp)          \
     }
 
 #define array_pop(array, dest) \
