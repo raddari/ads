@@ -11,3 +11,7 @@ Array _array_create(u64 capacity, u64 stride) {
   array[ARRAY_LENGTH] = 0;
   return (void*) (array + ARRAY_FIELD_SIZE);
 }
+
+void _array_destroy(Array array) {
+  free((u64*) array - ARRAY_FIELD_SIZE);
+}
