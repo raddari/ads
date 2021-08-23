@@ -24,7 +24,7 @@ void _array_set_field(Array array, ArrayField field, u64 value);
 Array _array_push(Array array, const void* value);
 void _array_pop(Array array, void* dest);
 
-Array _array_insert(Array array, u64 index, void* value);
+Array _array_insert(Array array, u64 index, const void* value);
 Array _array_pop_at(Array array, u64 index, void* dest);
 
 
