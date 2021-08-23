@@ -63,3 +63,6 @@ Array _array_pop_at(Array array, u64 index, void* dest);
 
 #define array_length(array) \
     _array_get_field(array, ARRAY_LENGTH)
+
+#define array_stride(array) \
+    _array_get_field(array, ARRAY_STRIDE)
