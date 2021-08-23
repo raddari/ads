@@ -16,7 +16,7 @@ Array _array_create(u64 capacity, u64 stride) {
 }
 
 void _array_destroy(Array array) {
-  free((u64*) array - ARRAY_FIELD_SIZE);
+  free(array_header(array));
 }
 
 u64 _array_get_field(Array array, ArrayField field) {
