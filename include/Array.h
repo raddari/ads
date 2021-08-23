@@ -1,7 +1,5 @@
-///
 /// Dynamic array with type safety.
 /// Heavily inspired by https://github.com/travisvroman/kohi
-///
 #pragma once
 
 #include "Types.h"
@@ -10,13 +8,13 @@
 typedef void* Array;
 
 typedef enum ArrayField {
-  ARRAY_CAPACITY,
-  ARRAY_LENGTH,
-  ARRAY_STRIDE,
-  ARRAY_FIELD_LENGTH,
+  ARRAY_STRIDE,    //< Size of each item in bytes
+  ARRAY_CAPACITY,  //< Allocated memory for the array
+  ARRAY_LENGTH,    //< Amount of items present
+  ARRAY_FIELD_SIZE,
 } ArrayField;
 
-Array _array_create(u64 length, u64 stride);
+Array _array_create(u64 capacity, u64 stride);
 void _array_destroy(Array array);
 Array _array_resize(Array array);
 
