@@ -1,6 +1,7 @@
 #include "Array.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 #define array_header(array) \
     (u64*) array - ARRAY_FIELD_SIZE
@@ -20,6 +21,19 @@ Array _array_create(u64 capacity, u64 stride) {
 
 void _array_destroy(Array array) {
   free(array_header(array));
+}
+
+Array _array_resize(Array array) {
+  u64 length = array_length(array);
+  u64 stride = array_stride(array);
+
+  Array new_array = _array_create(ARRAY_GROWTH_FACTOR * array_capacity(array),
+                                  stride);
+  memcpy(new_array, array, length * stride);
+  _array_set_field(new_array, ARRAY_LENGTH, length);
+
+  array_destroy(array);
+  return new_array;
 }
 
 u64 _array_get_field(Array array, ArrayField field) {
