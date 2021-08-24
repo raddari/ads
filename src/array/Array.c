@@ -13,6 +13,13 @@
 #define array_set_length(array, length) \
     _array_set_field(array, ARRAY_LENGTH, (length))
 
+#define array_ensure_capacity(array)                      \
+    {                                                     \
+      if (array_length(array) >= array_capacity(array)) { \
+        array = _array_resize(array);                     \
+      }                                                   \
+    }
+
 
 Array _array_create(u64 capacity, u64 stride) {
   u64 header_size = 3 * ARRAY_FIELD_SIZE * sizeof (u64);
@@ -51,14 +58,12 @@ void _array_set_field(Array array, ArrayField field, u64 value) {
 }
 
 Array _array_push(Array array, const void* value) {
+  array_ensure_capacity(array);
   u64 length = array_length(array);
-  if (length >= array_capacity(array)) {
-    array = _array_resize(array);
-  }
-
   u64 stride = array_stride(array);
   u64 offset = length * stride;
   memcpy(array + offset, value, stride);
+
   array_set_length(array, length + 1);
   return array;
 }
@@ -78,10 +83,8 @@ Array _array_insert(Array array, u64 index, const void* value) {
     return array;
   }
 
-  if (length >= array_capacity(array)) {
-    array = _array_resize(array);
-  }
-
+  array_ensure_capacity(array);
+  
   u64 stride = array_stride(array);
   void* dest = array + stride * index;
   if (index != length - 1) {
