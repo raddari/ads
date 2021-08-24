@@ -1,5 +1,6 @@
 #include "Array.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -68,4 +69,27 @@ void _array_pop(Array array, void* dest) {
 
   memcpy(dest, array + last, stride);
   _array_set_field(array, ARRAY_LENGTH, length - 1);
+}
+
+Array _array_insert(Array array, u64 index, const void* value) {
+  u64 length = array_length(array);
+  if (index >= length) {
+    fprintf(stderr, "Index %ld greater than array length %ld\n", index, length);
+    return array;
+  }
+
+  if (length >= array_capacity(array)) {
+    array = _array_resize(array);
+  }
+
+  u64 stride = array_stride(array);
+  void* dest = array + stride * index;
+  if (index != length - 1) {
+    void* right = dest + stride;
+    memmove(right, dest, stride * (length - index));
+  }
+
+  memcpy(dest, value, stride);
+  _array_set_field(array, ARRAY_LENGTH, length + 1);
+  return array;
 }
