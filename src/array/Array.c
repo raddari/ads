@@ -9,6 +9,9 @@
 
 #define array_capacity(array) \
     _array_get_field(array, ARRAY_CAPACITY)
+     
+#define array_set_length(array, length) \
+    _array_set_field(array, ARRAY_LENGTH, (length))
 
 
 Array _array_create(u64 capacity, u64 stride) {
@@ -31,7 +34,7 @@ Array _array_resize(Array array) {
   Array new_array = _array_create(ARRAY_GROWTH_FACTOR * array_capacity(array),
                                   stride);
   memcpy(new_array, array, length * stride);
-  _array_set_field(new_array, ARRAY_LENGTH, length);
+  array_set_length(array, length);
 
   array_destroy(array);
   return new_array;
@@ -58,7 +61,7 @@ Array _array_push(Array array, const void* value) {
 
   u64 offset = length * stride;
   memcpy(array + offset, value, stride);
-  _array_set_field(array, ARRAY_LENGTH, length + 1);
+  array_set_length(array, length + 1);
   return array;
 }
 
@@ -68,7 +71,7 @@ void _array_pop(Array array, void* dest) {
   u64 last = (length - 1) * stride;
 
   memcpy(dest, array + last, stride);
-  _array_set_field(array, ARRAY_LENGTH, length - 1);
+  array_set_length(array, length - 1);
 }
 
 Array _array_insert(Array array, u64 index, const void* value) {
@@ -90,6 +93,6 @@ Array _array_insert(Array array, u64 index, const void* value) {
   }
 
   memcpy(dest, value, stride);
-  _array_set_field(array, ARRAY_LENGTH, length + 1);
+  array_set_length(array, length + 1);
   return array;
 }
