@@ -28,11 +28,11 @@ void _array_destroy(Array array) {
 }
 
 Array _array_resize(Array array) {
-  u64 length = array_length(array);
   u64 stride = array_stride(array);
-
   Array new_array = _array_create(ARRAY_GROWTH_FACTOR * array_capacity(array),
                                   stride);
+
+  u64 length = array_length(array);
   memcpy(new_array, array, length * stride);
   array_set_length(array, length);
 
@@ -51,14 +51,12 @@ void _array_set_field(Array array, ArrayField field, u64 value) {
 }
 
 Array _array_push(Array array, const void* value) {
-  u64 stride = array_stride(array);
-  u64 capacity = array_capacity(array);
   u64 length = array_length(array);
-
-  if (length >= capacity) {
+  if (length >= array_capacity(array)) {
     array = _array_resize(array);
   }
 
+  u64 stride = array_stride(array);
   u64 offset = length * stride;
   memcpy(array + offset, value, stride);
   array_set_length(array, length + 1);
@@ -66,10 +64,9 @@ Array _array_push(Array array, const void* value) {
 }
 
 void _array_pop(Array array, void* dest) {
-  u64 stride = array_stride(array);
   u64 length = array_length(array);
+  u64 stride = array_stride(array);
   u64 last = (length - 1) * stride;
-
   memcpy(dest, array + last, stride);
   array_set_length(array, length - 1);
 }
