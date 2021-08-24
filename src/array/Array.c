@@ -60,3 +60,12 @@ Array _array_push(Array array, const void* value) {
   _array_set_field(array, ARRAY_LENGTH, length + 1);
   return array;
 }
+
+void _array_pop(Array array, void* dest) {
+  u64 stride = array_stride(array);
+  u64 length = array_length(array);
+  u64 last = (length - 1) * stride;
+
+  memcpy(dest, array + last, stride);
+  _array_set_field(array, ARRAY_LENGTH, length - 1);
+}
